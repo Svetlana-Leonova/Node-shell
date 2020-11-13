@@ -1,6 +1,7 @@
 const pwd = require("./pwd");
 const dirList = require("./ls");
-const cat = require('./cat');
+const cat = require("./cat");
+const curl = require("./curl");
 
 // Output a prompt
 process.stdout.write("prompt > ");
@@ -12,12 +13,14 @@ process.stdin.on("data", function (data) {
     pwd();
   } else if (cmd === "ls") {
     dirList();
-  } else if (cmd.includes('cat')) {
-    let str = cmd.slice(4)
-    console.log(str, 'aaaa')
+  } else if (cmd.includes("cat")) {
+    let str = cmd.slice(4);
+    console.log(str, "aaaa");
     cat(str);
-  }
-  else {
+  } else if (cmd.includes("curl")) {
+    let str = cmd.slice(5);
+    curl(str);
+  } else {
     process.stdout.write("You typed: " + cmd);
     process.stdout.write("\nprompt > ");
   }
